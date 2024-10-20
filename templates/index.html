@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IR Search Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="search-container">
+        <h1 class="logo">Article Search Engine</h1>
+        <form action="/" method="post" class="search-form">
+            <input type="text" name="query" placeholder="Search..." class="search-input" required>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        {% if results %}
+        <div class="results">
+            <h2>Results for "{{ query }}"</h2>
+            <ul>
+                {% for doc, score in results %}
+                <li>
+                    <div class="result-title">{{ doc }}</div>
+                    <div class="result-score">Relevance Score: {{ score }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
